@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strapi-backend
+spec:
+  selector:
+    matchLabels:
+      app: strapi
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: strapi
+        component: backend
+    spec:
+      containers:
+        - name: strapi-api
+          image: grpofiler/strapi-poc-api:b1
+          ports:
+            - containerPort: 1337
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
